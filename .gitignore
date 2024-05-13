@@ -33,3 +33,6 @@
 /admin/.vercel
 /admin/*.tsbuildinfo
 /admin/next-env.d.ts
+
+/backend/.env
+
