@@ -1,7 +1,7 @@
-// config/db.js
 const mongoose = require('mongoose');
-const config = require('config');
-const db = config.get(process.env.MONGO_URI);
+require('dotenv').config();
+
+const db = process.env.MONGO_URI;
 const dbName = 'unity_hotels';
 
 const connectDB = async () => {
