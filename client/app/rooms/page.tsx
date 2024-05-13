@@ -5,8 +5,9 @@ import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
+import { Suspense } from 'react'
 
-const Room = () => {
+function InternalComponent () {
     const { user, profileInfo } = useAuth();
     const searchParams = useSearchParams();
     const router = useRouter();
@@ -159,4 +160,11 @@ const Room = () => {
     );
 };
 
-export default Room;
+export default function Rooms() {
+    return (
+        // You could have a loading skeleton as the `fallback` too
+        <Suspense>
+            <InternalComponent />
+        </Suspense>
+    )
+}
