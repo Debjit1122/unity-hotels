@@ -156,7 +156,7 @@ const Rooms = () => {
     useEffect(() => {
         const fetchRoomData = async () => {
             try {
-                const response = await fetch("http://localhost:5000/api/rooms");
+                const response = await fetch("https://unity-hotels-api.vercel.app/api/rooms");
                 if (!response.ok) {
                     throw new Error("Failed to fetch room data");
                 }
@@ -216,7 +216,7 @@ const Rooms = () => {
 
         try {
             // Send a POST request to the API endpoint with the room data
-            const response = await fetch("http://localhost:5000/api/rooms", {
+            const response = await fetch("https://unity-hotels-api.vercel.app/api/rooms", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

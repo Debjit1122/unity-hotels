@@ -11,14 +11,15 @@ const BookingForm = () => {
         email: '',
         phoneNumber: ''
     });
-
+    //@ts-ignore
     const handleChange = (e) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
         });
     };
-
+    
+    //@ts-ignore
     const handleSubmit = (e) => {
         e.preventDefault();
         // Handle form submission (e.g., send booking details to server)

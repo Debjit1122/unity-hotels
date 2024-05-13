@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useAuth } from '@/contexts/AuthContext';
 import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
@@ -11,7 +12,7 @@ const BookingHistory = () => {
 
     const fetchBookingHistory = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/bookings/${profileInfo.username}`, {
+            const response = await fetch(`https://unity-hotels-api.vercel.app/api/bookings/${profileInfo.username}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

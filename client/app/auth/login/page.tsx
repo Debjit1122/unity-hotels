@@ -19,7 +19,8 @@ export default function LoginPage() {
         rememberMe: false
     });
     const [loadingProfile, setLoadingProfile] = useState(false);
-    const { login, user, profileInfo } = useAuth(); // Get login function and profile info from authentication context
+    //@ts-ignore
+    const { login, user, profileInfo, setProfileInfo } = useAuth(); // Get login function and profile info from authentication context
     const { toast } = useToast();
     const router = useRouter();
 
@@ -32,7 +33,7 @@ export default function LoginPage() {
     const fetchProfileInfo = async () => {
         try {
             setLoadingProfile(true);
-            const response = await fetch('http://localhost:5000/api/auth/me', {
+            const response = await fetch('https://unity-hotels-api.vercel.app/api/auth/me', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -45,17 +46,15 @@ export default function LoginPage() {
             }
 
             const data = await response.json();
-            // Set user profile info in authentication context
-            // This assumes you have a function like setProfileInfo in your useAuth hook
-            // Replace setProfileInfo with the appropriate function from your useAuth hook
             setProfileInfo(data);
             setLoadingProfile(false);
         } catch (error) {
+            //@ts-ignore
             console.error(error.message);
             setLoadingProfile(false);
         }
     };
-
+    //@ts-ignore
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         const val = type === 'checkbox' ? checked : value;
@@ -64,12 +63,12 @@ export default function LoginPage() {
             [name]: val
         });
     };
-
+    //@ts-ignore
     const handleLogin = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:5000/api/auth/login', {
+            const response = await fetch('https://unity-hotels-api.vercel.app/api/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -101,6 +100,7 @@ export default function LoginPage() {
                 });
             }
         } catch (error) {
+            //@ts-ignore
             console.error('Login error:', error.message);
             toast({
                 variant: "destructive",

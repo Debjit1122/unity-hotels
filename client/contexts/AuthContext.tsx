@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext();
@@ -20,7 +21,7 @@ export const AuthProvider = ({ children }) => {
 
     const fetchProfileInfo = async (token) => {
         try {
-            const response = await fetch('http://localhost:5000/api/auth/me', {
+            const response = await fetch('https://unity-hotels-api.vercel.app/api/auth/me', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

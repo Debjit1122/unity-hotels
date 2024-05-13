@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client'
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
@@ -8,7 +9,7 @@ const FeaturedRooms = () => {
     useEffect(() => {
         const fetchRooms = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/rooms');
+                const response = await fetch('https://unity-hotels-api.vercel.app/api/rooms');
                 if (!response.ok) {
                     throw new Error('Failed to fetch featured rooms');
                 }

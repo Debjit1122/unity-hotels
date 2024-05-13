@@ -22,7 +22,7 @@ export default function SignUpPage() {
         address: '',
         password: ''
     });
-
+    //@ts-ignore
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -30,12 +30,12 @@ export default function SignUpPage() {
             [name]: value
         });
     };
-
+    //@ts-ignore
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:5000/api/auth/signup', {
+            const response = await fetch('https://unity-hotels-api.vercel.app/api/auth/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -58,6 +58,7 @@ export default function SignUpPage() {
                 })
             }
         } catch (error) {
+            //@ts-ignore
             console.error('Signup error:', error.message);
             toast({
                 variant: "destructive",

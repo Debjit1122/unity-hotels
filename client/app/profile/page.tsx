@@ -7,22 +7,20 @@ import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
 
 const Profile = () => {
+    //@ts-ignore
     const { user, logout, profileInfo } = useAuth();
     const router = useRouter()
 
     const handleLogout = () => {
         logout();
     };
-
+    //@ts-ignore
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        //@ts-ignore
         return date.toLocaleDateString('en-US', options);
     };
-
-    if (!profileInfo) {
-        return <div className="flex items-center justify-center h-screen">Loading profile information...</div>;
-    }
 
     if (!user) {
         return (
@@ -37,7 +35,7 @@ const Profile = () => {
             <header className="bg-white shadow-sm py-4">
                 <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
                     <h1 className="text-3xl font-bold">Your Profile</h1>
-                    <button className="text-blue-500 hover:text-blue-700" onClick={handleLogout}>Logout</button>
+                    <button className="text-red-500 hover:text-red-700" onClick={handleLogout}>Logout</button>
                 </div>
             </header>
             <main className="container h-screen flex-1 py-8">
@@ -92,11 +90,6 @@ const Profile = () => {
                     </div>
                 </div>
             </main>
-            <footer className="bg-gray-200 py-4">
-                <div className="max-w-7xl mx-auto px-4">
-                    <p className="text-center text-gray-600">© 2024 Your Hotel Booking Site. All rights reserved.</p>
-                </div>
-            </footer>
         </div>
     );
 };

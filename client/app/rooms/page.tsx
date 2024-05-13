@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client'
 import { useSearchParams, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
@@ -29,7 +30,7 @@ const Room = () => {
     useEffect(() => {
         const fetchRoomData = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/rooms/${search}`);
+                const response = await fetch(`https://unity-hotels-api.vercel.app/api/rooms/${search}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch room data');
                 }
@@ -69,7 +70,7 @@ const Room = () => {
             // Log updatedFormData to verify that roomName is included
             console.log(updatedFormData);
 
-            const response = await fetch('http://localhost:5000/api/bookings', {
+            const response = await fetch('https://unity-hotels-api.vercel.app/api/bookings', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -128,25 +129,31 @@ const Room = () => {
                 </ul>
 
 
+                {
+                    user ? (
+                        <form onSubmit={handleSubmit} className="mt-8">
+                            <h3 className="text-2xl font-semibold mb-4">Book Now</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label htmlFor="checkInDate" className="block text-gray-700 font-semibold">Check-in Date:</label>
+                                    <input type="date" id="checkInDate" name="checkInDate" value={formData.checkInDate} onChange={handleChange} className="block w-full mt-1 p-2 border border-gray-300 rounded-md" required />
+                                </div>
+                                <div>
+                                    <label htmlFor="checkOutDate" className="block text-gray-700 font-semibold">Check-out Date:</label>
+                                    <input type="date" id="checkOutDate" name="checkOutDate" value={formData.checkOutDate} onChange={handleChange} className="block w-full mt-1 p-2 border border-gray-300 rounded-md" required />
+                                </div>
+                                <div>
+                                    <label htmlFor="numberOfGuests" className="block text-gray-700 font-semibold">Number of Guests:</label>
+                                    <input type="number" id="numberOfGuests" name="numberOfGuests" value={formData.numberOfGuests} onChange={handleChange} className="block w-full mt-1 p-2 border border-gray-300 rounded-md" required />
+                                </div>
+                            </div>
+                            <Button type="submit" className="mt-4 font-semibold py-2 px-4 rounded-md transition duration-300">Book Now</Button>
+                        </form>
+                    ) : (
+                        <p className='text-center font-bold py-20 text-xl'>Please login in to book rooms!</p>
+                    )
+                }
 
-                <form onSubmit={handleSubmit} className="mt-8">
-                    <h3 className="text-2xl font-semibold mb-4">Book Now</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label htmlFor="checkInDate" className="block text-gray-700 font-semibold">Check-in Date:</label>
-                            <input type="date" id="checkInDate" name="checkInDate" value={formData.checkInDate} onChange={handleChange} className="block w-full mt-1 p-2 border border-gray-300 rounded-md" required />
-                        </div>
-                        <div>
-                            <label htmlFor="checkOutDate" className="block text-gray-700 font-semibold">Check-out Date:</label>
-                            <input type="date" id="checkOutDate" name="checkOutDate" value={formData.checkOutDate} onChange={handleChange} className="block w-full mt-1 p-2 border border-gray-300 rounded-md" required />
-                        </div>
-                        <div>
-                            <label htmlFor="numberOfGuests" className="block text-gray-700 font-semibold">Number of Guests:</label>
-                            <input type="number" id="numberOfGuests" name="numberOfGuests" value={formData.numberOfGuests} onChange={handleChange} className="block w-full mt-1 p-2 border border-gray-300 rounded-md" required />
-                        </div>
-                    </div>
-                    <Button type="submit" className="mt-4 font-semibold py-2 px-4 rounded-md transition duration-300">Book Now</Button>
-                </form>
             </div>
         </div>
     );
