@@ -15,7 +15,6 @@
 /client/.vercel
 /client/*.tsbuildinfo
 /client/next-env.d.ts
-
 /admin/node_modules
 /admin/.pnp
 /admin/.pnp.js
@@ -35,4 +34,3 @@
 /admin/next-env.d.ts
 
 /backend/.env
-
